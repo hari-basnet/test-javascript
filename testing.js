@@ -148,7 +148,7 @@ function genSocialSecurityNum(){
 
     for (let i = 0; i < 1; i++){
 
-        lastLetter += letters.charAt(Math.floor(Math.random() * numbers.length));
+        lastLetter += letters.charAt(Math.floor(Math.random() * letters.length));
 
     }
 
@@ -157,6 +157,46 @@ function genSocialSecurityNum(){
 }
 
 console.log(genSocialSecurityNum());
+
+
+//This function is more correct and close to finnish system
+function finSocialSecurityNumber(){
+
+    //social security number example ddmmyy-zzzc
+    let dd = Math.floor(Math.random() * 31) + 1;
+    let mm = Math.floor(Math.random() * 12) + 1;
+    let yy = Math.floor(Math.random() * 99) + 1;
+    let zzz = Math.floor(Math.random() * 999) + 1;
+    let lastCharacter = "";
+
+    var characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    //randomly choose the last character 
+    for (let i = 0; i < 1; i++){
+
+        lastCharacter += characters.charAt(Math.floor(Math.random() * characters.length));
+
+    }
+    if(dd<10){
+        dd = `0${dd}`;
+    }
+    if(mm<10){
+        mm = `0${mm}`;
+    }
+    if(yy<10){
+        yy = `0${yy}`;
+    }
+
+    if(zzz < 10){
+        zzz = `00${zzz}`;
+    }else if(zzz < 100){
+        zzz = `0${zzz}`;
+    }
+
+    return `${dd}${mm}${yy}-${zzz}${lastCharacter}`;
+
+}
+console.log(finSocialSecurityNumber());
 
 // (8)
 
@@ -210,8 +250,9 @@ function removeTask(){
     todoList.pop();
 }
 
-function editTask(){
+function editTask(index,...items){
 
+    todoList.splice(index, 1, ...items);
 }
 
 addTask(
@@ -223,7 +264,19 @@ addTask(
 
 removeTask();
 
+editTask(1, {
 
+    task: 'need to learn more',
+    deadline: '23/03/2019 14:30',
+    completed: false
+},
+{
+
+    task: 'listen to podcasts',
+    deadline: '23/03/2019 14:30',
+    completed: false
+}
+);
 console.log(todoList);
     
 
@@ -244,3 +297,6 @@ function checkUniqueness(arr){
 //works fine checking last element but doesnot work 
 // if there is same element in middle
 console.log(checkUniqueness([1,4,6,2,3]));
+
+
+
