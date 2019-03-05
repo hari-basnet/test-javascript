@@ -19,7 +19,23 @@ function countWords(paragraph,words){
 
 console.log(countWords("I love teaching. If you do not love teaching what else can you love. I love JavaScript if you do not love something which can give life to your application what else can you love.","to"));
 
+//
+//declaration function 
+//dec is just to make the name different  
 
+const  countWordDec = function (paragraph,words){
+
+    //create a regular expression 
+    const pattern = new RegExp(words, 'gi');
+
+    //now using match method match the pattern to the paragraph
+    const matches = paragraph.match(pattern);
+    let count = matches === null ? 0 : matches.length;
+
+    return count;
+}
+
+console.log(countWordDec("I love teaching. If you do not love teaching what else can you love. I love JavaScript if you do not love something which can give life to your application what else can you love.","love"));
 //Write a function which takes an array parameter and returns an array of the data types of each item:
 
 function checkDataTypes(array){
@@ -197,7 +213,6 @@ function finSocialSecurityNumber(){
 
 }
 console.log(finSocialSecurityNumber());
-
 // (8)
 
 const shoppingCart = ['Milk', 'Coffee', 'Tea', 'Honey'];
@@ -299,4 +314,12 @@ function checkUniqueness(arr){
 console.log(checkUniqueness([1,4,6,2,3]));
 
 
+///
+////functional programming starts here 
+var countries = ['Finland', 'Iceland', 'Sweden', 'Norway'];
 
+const filteredWords = countries.filter(function (country){
+	return country.includes('land');
+});
+
+console.log(filteredWords);
